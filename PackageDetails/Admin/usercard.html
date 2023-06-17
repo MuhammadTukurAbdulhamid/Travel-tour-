@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Vanilla Slider</title>
+    <style>
+         :root {
+            --shadow: rgba(0, 0, 0, 0.8)
+        }
+        
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-image: url('../../images/cash.jpeg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: bisque;
+        }
+        
+        .slider-container {
+            height: 50vh;
+            display: inline-flex;
+            overflow: hidden;
+            scrollbar-width: none;
+            transform: translateX(0);
+            will-change: transform;
+            transition: transform 0.3s ease-out;
+            cursor: grab;
+        }
+        
+        .slide {
+            max-height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @media(min-width: 1200px) {
+            .slide {
+                padding: 1rem;
+            }
+        }
+        
+        .slide img {
+            max-width: 50%;
+            max-height: 50%;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 5px 5px 50px -1px var(--shadow);
+            border-radius: 4px;
+            user-select: none;
+            margin-top: -90px;
+        }
+        
+        .grabbing {
+            cursor: grabbing;
+        }
+        
+        .grabbing .slide img {
+            transform: scale(0.9);
+            box-shadow: 5px 5px 40px -1px var(--shadow);
+        }
+        
+        .content {
+            margin-top: -20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 style="text-align: center;margin-top:10px">PAYMENT DETAILS</h1>
+    <div class="slider-container">
+        <div class="slide">
+            <img src="../images/card1.jpg" />
+        </div>
+        <div class="slide">
+            <img src="../images/card2.jpg" />
+        </div>
+        <div class="slide">
+            <img src="../images/card3.png" />
+        </div>
+        <div class="slide">
+            <img src="../images/card4.jpg" />
+        </div>
+        <div class="slide">
+            <img src="../images/card5.png" alt="" />
+        </div>
+    </div>
+    <div class="content">
+        <span style="margin-left:36%;font-family:cambria;color:black;font-weight:bolder ;font-size:20px">Card Number <input type="number" name="cardno" style="width:20%;height:30px;margin-left:30px;border-radius:4px;background-color:rgb(250, 250, 156) " id="b"></span><br><br>
+        <span style="margin-left:36%;font-family:cambria;color:  black;font-weight:bolder;font-size:20px;font-family:cambria">Name of Card <input type="text" name="nc" style="width:20%;height:30px; margin-left:30px;border-radius:4px;background-color:rgb(250, 250, 156)"></span>        <br> <br>
+
+
+        <span style="margin-left:36%;font-family:cambria;color:  black;font-weight:bolder;font-size:20px;font-family:cambria">Card Type</span>
+        <select name="cardtype" style="width:20%;height:30px;margin-left:59px;border-radius:4px;background-color:rgb(250, 250, 156);border-top:2px solid black;border-left:2px solid black ">
+        
+    <option value=" ">Select the type of card</option>
+    <option value="Credit">Credit</option>
+    <option value="Debit">Debit</option>
+    <option value="ATM Card">ATM Card</option>
+    <option value="Charge Card">Charge Card</option>
+    <option value="Retail Credit Card">Retail Credit Card</option>
+    <option value="Business Credit Card">Business Credit Card</option>
+
+</select>
+        <br><br>
+
+        <span style="margin-left:36%;font-family:cambria;color:   black;font-weight:bolder;font-size:20px;font-family:cambria">Card Expiry <input type="number" name="cardex" style="width:20%;height:33px;margin-left:45px;border-radius:4px;background-color:rgb(250, 250, 156) "></span>        <br><br>
+        <span style="margin-left:36%;font-family:cambria;color:  black;font-weight:bolder;font-size:20px;font-family:cambria">CVV Number <input type="number" name="cardcv" style="width:20%;height:30px;margin-left:35px;border-radius:4px;background-color:rgb(250, 250, 156) "></span><br><br>
+
+        <a href="../User/booking/bookingdone.html"><input type="submit" value="MAKE PAYMENT" style="margin-left:40%;width:10%; height:35px;margin-top:20px;color:white;background-color:rgb(49, 49, 231)"></a>
+        <a href="./BookingForm.html"><input type="button" value="CANCEL" style="margin-left:70px;padding:5px;background-color:red;width:10%;height:35px"></a>
+    </div>
+    <script src="app.js"></script>
+
+</body>
+
+</html>

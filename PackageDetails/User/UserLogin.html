@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Userlogin</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .header {
+            overflow: hidden;
+            padding: 15px 10px;
+            background: rgb(71, 69, 69);
+            width: 100%;
+        }
+        /* Style the header links */
+        
+        .header a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 20px;
+            line-height: 25px;
+            border-radius: 4px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            border: 8px solid grey;
+            border-style: groove;
+        }
+        /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+        
+        .header i {
+            margin-right: 4px;
+        }
+        /* Change the background color on mouse-over */
+        
+        .header a:hover {
+            background-color: rgb(190, 43, 68);
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bolder;
+            color: #fff;
+            text-transform: uppercase;
+        }
+        
+        .logo span {
+            color: rgb(255, 94, 0);
+        }
+        /* Style the active/current link*/
+        
+        .header .log {
+            color: white;
+            font-size: 20px;
+            background-color: rgb(223, 19, 53);
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            padding: 10px;
+            border-radius: 5px;
+            border: 8px solid grey;
+            border-style: outset;
+        }
+        
+        .header .log:hover {
+            background-color: rgb(223, 46, 15);
+        }
+        /* Float the link section to the right */
+        
+        .header-right {
+            float: right;
+        }
+        /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+        
+        @media screen and (max-width: 500px) {
+            .header a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+            .header-right {
+                float: none;
+            }
+        }
+        
+        html,
+        body {
+            display: grid;
+            height: 100%;
+            width: 100%;
+            place-items: center;
+            /* background: #f2f2f2; */
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            /* background: linear-gradient(-135deg, #c850c0, #4158d0); */
+        }
+        
+         ::selection {
+            background: #4158d0;
+            color: #fff;
+        }
+        
+        .wrapper {
+            width: 380px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 5%;
+            margin-bottom: 30px;
+        }
+        
+        .wrapper .title {
+            font-size: 35px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 100px;
+            color: #fff;
+            user-select: none;
+            border-radius: 15px 15px 0 0;
+            background: linear-gradient(-135deg, #c850c0, #4158d0);
+        }
+        
+        .wrapper form {
+            padding: 10px 30px 50px 30px;
+        }
+        
+        .wrapper form .field {
+            height: 50px;
+            width: 100%;
+            margin-top: 20px;
+            position: relative;
+        }
+        
+        .wrapper form .field input {
+            height: 100%;
+            width: 100%;
+            outline: none;
+            font-size: 17px;
+            padding-left: 20px;
+            border: 1px solid lightgrey;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .wrapper form .field input:focus,
+        form .field input:valid {
+            border-color: #4158d0;
+        }
+        
+        .wrapper form .field label {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            color: #999999;
+            font-weight: 400;
+            font-size: 17px;
+            pointer-events: none;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+        }
+        
+        form .field input:focus~label,
+        form .field input:valid~label {
+            top: 0%;
+            font-size: 16px;
+            color: #4158d0;
+            background: #fff;
+            transform: translateY(-50%);
+        }
+        
+        form .content {
+            display: flex;
+            width: 100%;
+            height: 50px;
+            font-size: 16px;
+            align-items: center;
+            justify-content: space-around;
+        }
+        
+        form .content .checkbox {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        form .content input {
+            width: 15px;
+            height: 15px;
+            background: red;
+        }
+        
+        form .content label {
+            color: #262626;
+            user-select: none;
+            padding-left: 5px;
+        }
+        
+        form .content .pass-link {
+            color: "";
+        }
+        
+        form .field input[type="submit"] {
+            color: #fff;
+            border: none;
+            padding-left: 0;
+            margin-top: -10px;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            background: linear-gradient(-135deg, #c850c0, #4158d0);
+            transition: all 0.3s ease;
+        }
+        
+        form .field input[type="submit"]:active {
+            transform: scale(0.95);
+        }
+        
+        form .signup-link {
+            color: #262626;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+        
+        form .pass-link a,
+        form .signup-link a {
+            color: #4158d0;
+            text-decoration: none;
+        }
+        
+        form .pass-link a:hover,
+        form .signup-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer {
+            background: #333;
+            margin-top: 10%;
+        }
+        
+        .footer .box-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .footer .box-container .box {
+            padding: 1rem 0;
+            flex: 1 1 25rem;
+        }
+        
+        .footer .box-container .box h3 {
+            font-size: 2.5rem;
+            padding: .7rem 0;
+            color: #fff;
+        }
+        
+        .footer .box-container .box p {
+            font-size: 1.5rem;
+            padding: .7rem 0;
+            color: #eee;
+        }
+        
+        .footer .box-container .box a {
+            display: block;
+            font-size: 1.5rem;
+            padding: .7rem 0;
+            color: #eee;
+        }
+        
+        .footer .box-container .box a:hover {
+            color: var(--orange);
+            text-decoration: underline;
+        }
+        
+        .footer .credit {
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 1rem;
+            font-size: 2rem;
+            font-weight: normal;
+            color: #fff;
+            border-top: .1rem solid rgba(255, 255, 255, .2);
+        }
+        
+        .footer .credit span {
+            color: var(--orange);
+        }
+        /* media queries  */
+        
+        @media (max-width:1200px) {
+            html {
+                font-size: 55%;
+            }
+        }
+        
+        @media (max-width:991px) {
+            section {
+                padding: 2rem;
+            }
+        }
+        
+        @media (max-width:768px) {
+            #menu-bar {
+                display: initial;
+            }
+        }
+        
+        @media (max-width:450px) {
+            html {
+                font-size: 50%;
+            }
+            .heading span {
+                font-size: 2.5rem;
+            }
+        }
+        
+        body {
+            background-color: rgb(195, 228, 241);
+        }
+        
+        * {
+            box-sizing: border-box
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <a href="../../index.html" class="logo"><span>T</span>RIP IT</a>
+        <div class="header-right">
+            <a href="../../index.html" style="margin-right:20px;  "><i class="fa fa-home"></i>Home</a>
+            <a href="../AboutUs/AboutUs.html" style="margin-right:20px"><i class="fa fa-user"></i>About Us</a>
+            <a href="../../index.html" style="margin-right:20px"><i class="fa fa-globe"></i>Places</a>
+            <a href="../../index.html" style="margin-right:20px"><i class="fa fa-cog"></i>Services</a>
+            <a href="../Reviews/Reviews.html" style="margin-right:20px"><i class="fa fa-user-plus"></i>Reviews</a>
+            <a href="../ContactUs/ContactUs.html" style="margin-right:20px" target="_blank"><i class="fa fa-address-book"></i>Contact</a>
+
+            <a href="../login/signup.html" class="log"><i class="fa fa-sign-in" style="margin-right:5px"></i>LOGIN/REGISTER</a>
+
+
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div class="title">Login Form</div>
+        <form action="#">
+            <div class="field">
+                <input type="text" required>
+                <label>Username</label>
+            </div>
+            <div class="field">
+                <input type="password" required>
+                <label>Password</label>
+            </div>
+            <div class="content">
+                <div class="checkbox">
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me">Remember me</label>
+                </div>
+                <div class="pass-link"><a href="#">Forgot password?</a></div>
+            </div>
+            <div class="field">
+                <input type="submit" value="Login">
+            </div>
+            <div class="signup-link">Not a member? <a href="../User/UserLoginRegistration.html">Signup now</a></div>
+        </form>
+    </div>
+
+    <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>about us</h3>
+                <p>Travel and tourism is the largest service industry in India. It provides heritage, cultural, medical, business and sports tourism. The main objective of this sector is to develop and promote tourism, maintain competitiveness of India as
+                    tourist destination and improve and expand existing tourism products to ensure employment generation and economic growth.</p>
+            </div>
+            <div class="box" style="margin-left:30px">
+                <h3>branch locations</h3>
+                <a href="#">india</a>
+                <a href="#">USA</a>
+                <a href="#">japan</a>
+                <a href="#">france</a>
+            </div>
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#home">home</a>
+                <a href="./package/AboutUs.html">About Us</a>
+                <a href="#Gallery">Gallery</a>
+                <a href="#Services">Services</a>
+                <a href="./package/Reviews.html">Review</a>
+                <a href="./package/Contact Us.html">Contact</a>
+
+            </div>
+            <div class="box">
+                <h3>follow us</h3>
+                <a href="#">facebook</a>
+                <a href="#">instagram</a>
+                <a href="#">twitter</a>
+                <a href="#">linkedin</a>
+            </div>
+
+        </div>
+
+        <h1 class="credit"> Created by <span> Aditi And Garima </span> | All rights reserved! </h1>
+
+    </section>
+
+
+    </footer>
+
+
+</body>
+
+</html>
